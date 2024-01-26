@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spielhalle Falkensee</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+<div class="bg-white p-8 rounded-lg shadow-md text-center max-w-md mx-auto">
+  <h1 class="text-2xl md:text-4xl font-bold mb-4">Seite im Aufbau</h1>
+  <p class="text-gray-600 my-6">Wir freuen uns, Sie auf unserer neuen Webseite begrüßen zu dürfen! <br>Unsere Experten arbeiten unermüdlich daran, Ihnen das bestmögliche Erlebnis zu bieten und die Webseite der Spielhalle Falkensee zu entwickeln. </p>
+  <p class="text-gray-600 my-6">Unsere Webseite wird mit vielen spannenden Features ausgestattet sein. Sie können Informationen über alle unsere Spiele finden und ihre Verfügbarkeit überprüfen. Außerdem können Sie sich auf spezielle Angebote und Aktionen freuen, die nur online verfügbar sein werden!</p>
+  <p class="text-gray-600 my-6">Bitte schauen Sie bald wieder vorbei und erleben Sie eine ganz neue Welt mit der <b>Spielhalle Falkensee</b>.</p>
+  <div id="countdown" class="text-blue-500 my-6 pr-6 text-2l "></div>
+  <button class="mt-8 bg-blue-500 text-white rounded-md px-4 py-2 transition duration-300 ease-in-out hover:bg-blue-600 mr-6">Komm bald wieder</button>
+</div>
+
+<script>
+  var countDownDate = new Date("May 1, 2024 15:37:25").getTime();
+  var countdownfunction = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+    if (distance < 0) {
+      clearInterval(countdownfunction);
+      document.getElementById("countdown").innerHTML = "WIR SIND ONLINE!";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
