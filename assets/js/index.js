@@ -1,19 +1,27 @@
 const countDownDate = new Date("May 1, 2024 15:37:25").getTime();
 
-let countdownFunction = setInterval(() => {
-  let now = new Date().getTime();
-  let distance = countDownDate - now;
+function getTimeRemaining(endTime = countDownDate) {
+  const distance = endTime - Date.now();
 
-  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  return {
+    'days': Math.floor(distance / (1000 * 60 * 60 * 24)),
+    'hours': Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    'minutes': Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+    'seconds': Math.floor((distance % (1000 * 60)) / 1000),
+    'total': distance
+  };
+}
 
-  document.getElementById("countdown").innerHTML
-    = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+function updateCountdown(endTime =countDownDate) {
+  const t = getTimeRemaining(endTime);
+  const countdown = document.getElementById("countdown");
 
-  if (distance < 0) {
-    clearInterval(countdownFunction);
-    document.getElementById("countdown").innerHTML = "WIR SIND ONLINE!";
+  countdown.innerHTML = `${t.days}d ${t.hours}h ${t.minutes}m ${t.seconds}s`;
+
+  if (t.total <= 0) {
+    clearInterval(timeInterval);
+    countdown.innerHTML = "WIR SIND ONLINE!";
   }
-}, 1000);
+}
+
+const timeInterval = setInterval(() => updateCountdown(countDownDate), 1000);
